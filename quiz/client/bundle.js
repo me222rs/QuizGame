@@ -37949,6 +37949,7 @@ function QuizForm(props) {
           null,
           props.questions[props.step].question
         ),
+        _react2.default.createElement('img', { src: props.questions[props.step].imageUrl, height: '300', width: '300' }),
         _react2.default.createElement(
           'ul',
           null,

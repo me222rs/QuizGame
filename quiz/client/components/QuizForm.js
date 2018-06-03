@@ -14,6 +14,7 @@ function QuizForm(props){
         <form onSubmit={props.submitAnswer}>
           <p>Fråga {props.step}</p><br />
           <p>{props.questions[props.step].question}</p>
+          <img src={props.questions[props.step].imageUrl} height="300" width="300"/>
           <ul>
             {props.questions[props.step].options.map((option, index) =>{
               return (
