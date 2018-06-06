@@ -4,9 +4,9 @@ const socket = openSocket('http://localhost:8000');
 import axios from 'axios';
 import state from './store';
 
-function subscribeToTimer(cb) {
-  socket.on('timer', timestamp => cb(null, timestamp));
-  socket.emit('subscribeToTimer', 1000);
+function currentVisitors(cb) {
+  socket.on('counter', visitors => cb(null, visitors));
+  socket.emit('currentVisitors', 1000);
 }
 
 function getQuestionsFromDB(){
@@ -19,4 +19,4 @@ function getQuestionsFromDB(){
     console.log(error);
   });
 }
-export { subscribeToTimer, getQuestionsFromDB }
+export { currentVisitors, getQuestionsFromDB }
