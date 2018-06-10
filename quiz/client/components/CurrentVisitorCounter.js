@@ -10,7 +10,7 @@ class CurrentVisitorCounter extends Component {
       visitors
     }));
     this.state = {
-      visitors: 'No visitors'
+      visitors: '0'
     };
   }
 

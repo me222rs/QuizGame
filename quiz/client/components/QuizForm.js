@@ -7,6 +7,14 @@ import store from '../store/index';
 function QuizForm(props){
   console.log('render',props);
 
+  //Disable the submit button if no option is selected
+  let disabledSubmit = false;
+  if(props.answer === undefined){
+    disabledSubmit = true;
+  }
+  else{
+    disabledSubmit = false;
+  }
   if(props.step < props.questions.length){
     return (
       <div>
@@ -25,7 +33,7 @@ function QuizForm(props){
               )
             })}
           </ul>
-          <input type="submit"/>
+          <input type="submit" disabled={disabledSubmit}/>
         </form>
       </div>
     );
@@ -34,6 +42,7 @@ function QuizForm(props){
       <div>
         <h1>Quiz</h1>
         <p>Tack för att du spelade!</p>
+        <h3>Du fick {props.score} poäng!</h3>
         <button onClick={props.restart}>Spela igen</button>
       </div>
     );
@@ -43,7 +52,9 @@ function QuizForm(props){
 function mapStateToProps(state){
   return {
     questions: state.questions,
-    step: state.step
+    step: state.step,
+    answer: state.answer,
+    score: state.score
   };
 }
 

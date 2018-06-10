@@ -1,14 +1,15 @@
 "use strict";
 import React from 'react';
 import {connect} from 'react-redux';
-import constants from '../store/constants';
-import store from '../store/index';
 
 function HighscoreList(props){
   console.log('render',props);
   return (
     <div>
       <h1>Highscore</h1>
+      <p>Test1 - 60 poäng</p>
+      <p>Test2 - 45 poäng</p>
+      <p>Test3 - 35 poäng</p>
     </div>
   );
 }

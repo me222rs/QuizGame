@@ -12,7 +12,7 @@ const initialState ={
   score: 0,
   correctAnswer: undefined,
   playerWasCorrect: false,
-  showAnswer: false
+  showAnswer: false,
 }
 
 const reducer = (state = initialState, action) => {
