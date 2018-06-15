@@ -3,15 +3,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import constants from '../store/constants';
 import store from '../store/index';
+import { Link } from 'react-router-dom'
 
 function Menu(props){
   console.log('render',props);
   return (
     <div>
-      <a href="">Quiz</a>
-      <a href="">Highscore</a>
-      <a href="">Kontakt</a>
-      <a href="">Om</a>
+      <Link to="/">Quiz</Link>
+      <Link to="/highscore">Highscore</Link>
     </div>
   );
 }
