@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import constants from '../store/constants';
 import store from '../store/index';
+import Score from './Score';
 
 function QuizForm(props){
   console.log('render',props);
@@ -15,10 +16,10 @@ function QuizForm(props){
   else{
     disabledSubmit = false;
   }
+
   if(props.step < props.questions.length){
     return (
       <div>
-        <h1>Quiz</h1>
         <form onSubmit={props.submitAnswer}>
           <p>Fråga {props.step}</p><br />
           <p>{props.questions[props.step].question}</p>
@@ -35,15 +36,17 @@ function QuizForm(props){
           </ul>
           <input type="submit" disabled={disabledSubmit}/>
         </form>
+        <Score />
       </div>
     );
   }else{
+    // TODO Add the menu to the end page
     return(
       <div>
-        <h1>Quiz</h1>
         <p>Tack för att du spelade!</p>
         <h3>Du fick {props.score} poäng!</h3>
         <button onClick={props.restart}>Spela igen</button>
+        <button>Visa Highscore (Placeholder)</button>
       </div>
     );
   }

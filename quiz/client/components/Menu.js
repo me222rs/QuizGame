@@ -9,7 +9,7 @@ function Menu(props){
   console.log('render',props);
   return (
     <div>
-      <Link to="/">Quiz</Link>
+      <Link to="/">Hem</Link>
       <Link to="/highscore">Highscore</Link>
     </div>
   );

@@ -2,13 +2,15 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import App from './App';
 import HighscoreList from './components/HighscoreList';
+import StartMenu from './components/StartMenu';
 import Clock from './components/Clock';
 import store from './store/';
 import {Provider} from 'react-redux';
+
 export const Routes = () => (
   <Provider store={store}>
   <Switch>
-      <Route exact path='/' component={App} />
+      <Route exact path='/' component={StartMenu} />
       <Route exact path='/highscore' component={HighscoreList} />
   </Switch>
 </Provider>

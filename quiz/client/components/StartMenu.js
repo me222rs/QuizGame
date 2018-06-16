@@ -1,15 +1,21 @@
 "use strict";
+//Modules
 import React from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
+// Components
+import CurrentVisitorCounter from './CurrentVisitorCounter';
+import Menu from './Menu';
+import QuizForm from './QuizForm';
+// Other
 import constants from '../store/constants';
 import store from '../store/index';
-import QuizForm from './QuizForm';
 import {getQuestionsFromDB} from '../api';
-import axios from 'axios';
 
 function welcome(props){
   return(
     <div>
+      <Menu />
       <h1>Välkommen till quizzet!</h1>
       <h3>Instruktioner</h3>
       <p>
@@ -23,6 +29,7 @@ function welcome(props){
       </p>
       <p>Är du redo?</p>
       <button onClick={props.start}>Start</button>
+      <CurrentVisitorCounter />
     </div>
   );
 }
