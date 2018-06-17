@@ -867,6 +867,9 @@ var reducer = function reducer() {
       } else {
         wasCorrect = "Fel";
       }
+
+      (0, _api.saveAnswerToDB)(state.questions[state.step].questionID, state.answer);
+
       return Object.assign({}, state, {
         step: state.step + 1,
         answers: copyOfItems,
@@ -2204,7 +2207,7 @@ var locationsAreEqual = function locationsAreEqual(a, b) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getQuestionsFromDB = exports.currentVisitors = undefined;
+exports.saveAnswerToDB = exports.getQuestionsFromDB = exports.currentVisitors = undefined;
 
 var _socket = __webpack_require__(125);
 
@@ -2240,16 +2243,19 @@ function getQuestionsFromDB() {
 }
 
 // TODO implementera funktions för att spara resultat i databas
-function saveAnswerToDB(answer) {
-  _axios2.default.post('http://localhost:8000/saveAnswer').then(function (response) {
+function saveAnswerToDB(questionID, answer) {
+  _axios2.default.post('http://localhost:8000/saveAnswerToDB', {
+    questionID: questionID,
+    answer: answer
+  }).then(function (response) {
     console.log(response);
-    return response;
   }).catch(function (error) {
     console.log(error);
   });
 }
 exports.currentVisitors = currentVisitors;
 exports.getQuestionsFromDB = getQuestionsFromDB;
+exports.saveAnswerToDB = saveAnswerToDB;
 
 /***/ }),
 /* 21 */
@@ -5224,7 +5230,6 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'App' },
-        _react2.default.createElement(_Menu2.default, null),
         _react2.default.createElement(
           _reactRedux.Provider,
           { store: _store2.default },
@@ -38397,10 +38402,10 @@ var Clock = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'App' },
+        { className: 'Time' },
         _react2.default.createElement(
           'p',
-          { className: 'App-intro' },
+          null,
           'Klocka: ',
           this.state.timestamp
         )

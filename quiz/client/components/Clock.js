@@ -16,8 +16,8 @@ class Clock extends Component {
 
   render() {
     return (
-      <div className="App">
-        <p className="App-intro">
+      <div className="Time">
+        <p>
           Klocka: {this.state.timestamp}
         </p>
       </div>

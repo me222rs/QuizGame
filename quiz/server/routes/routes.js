@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var Question = require('../../models/QuestionModel');
+var Answer = require('../../models/AnswerModel');
 
 //This is the startpage
 router.get('/', function(req, res){
@@ -17,6 +18,20 @@ router.get('/getAllQuestions',function(req, res) {
   });
 });
 
+router.post('/saveAnswerToDB',function(req, res) {
+  var answer = Answer({
+    questionID: req.body.questionID,
+    answer: req.body.answer,
+    answerID: 1
+  });
+
+  // save the answer
+  answer.save(function(err) {
+    if (err) throw err;
+    console.log('Answer saved!');
+  });
+});
+
 //This qets 10 random questions from the database
 router.get('/get10RandomQuestions',function(req, res) {
 
@@ -25,11 +40,6 @@ router.get('/get10RandomQuestions',function(req, res) {
 //This gets one random question from the database
 router.get('/getQuestion',function(req, res) {
   res.send('Gets one question.');
-});
-
-//This sends the answer to the database and responds with statistics data and if it was correct
-router.post('/answerQuestion',function(req, res) {
-  res.send('Sends the answer.');
 });
 
 router.get('/getStatistics',function(req, res) {

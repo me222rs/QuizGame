@@ -21,14 +21,16 @@ function getQuestionsFromDB(){
 }
 
 // TODO implementera funktions för att spara resultat i databas
-function saveAnswerToDB(answer){
-  axios.post('http://localhost:8000/saveAnswer')
+function saveAnswerToDB(questionID, answer){
+  axios.post('http://localhost:8000/saveAnswerToDB', {
+    questionID: questionID,
+    answer: answer
+  })
   .then(function (response) {
     console.log(response);
-    return response;
   })
   .catch(function (error) {
     console.log(error);
   });
 }
-export { currentVisitors, getQuestionsFromDB }
+export { currentVisitors, getQuestionsFromDB, saveAnswerToDB }

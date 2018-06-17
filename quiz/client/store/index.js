@@ -2,6 +2,7 @@
 import {createStore} from 'redux';
 import constants from './constants';
 import {getQuestionsFromDB} from '../api';
+import {saveAnswerToDB} from '../api';
 
 const initialState ={
   questions: [],
@@ -39,6 +40,9 @@ const reducer = (state = initialState, action) => {
     }else{
       wasCorrect = "Fel";
     }
+
+    saveAnswerToDB(state.questions[state.step].questionID, state.answer);
+
     return Object.assign({}, state, {
       step: state.step+1,
       answers: copyOfItems,
