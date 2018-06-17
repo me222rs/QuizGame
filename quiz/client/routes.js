@@ -10,7 +10,7 @@ import {Provider} from 'react-redux';
 export const Routes = () => (
   <Provider store={store}>
   <Switch>
-      <Route exact path='/' component={StartMenu} />
+      <Route exact path='/' component={App} />
       <Route exact path='/highscore' component={HighscoreList} />
   </Switch>
 </Provider>

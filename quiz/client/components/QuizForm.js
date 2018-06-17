@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import constants from '../store/constants';
 import store from '../store/index';
 import Score from './Score';
+import CurrentVisitorCounter from './CurrentVisitorCounter';
 
 function QuizForm(props){
   console.log('render',props);

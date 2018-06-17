@@ -15,7 +15,6 @@ import {getQuestionsFromDB} from '../api';
 function welcome(props){
   return(
     <div>
-      <Menu />
       <h1>Välkommen till quizzet!</h1>
       <h3>Instruktioner</h3>
       <p>
@@ -29,7 +28,6 @@ function welcome(props){
       </p>
       <p>Är du redo?</p>
       <button onClick={props.start}>Start</button>
-      <CurrentVisitorCounter />
     </div>
   );
 }

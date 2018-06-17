@@ -29,6 +29,7 @@ const reducer = (state = initialState, action) => {
     case constants.NEXT_STEP:
     const copyOfItems = state.answers;
     copyOfItems.push(state.answer);
+    console.log(state.answers);
     console.log("correct",state.questions[state.step].correctAnswer);
     let points = 0;
     let wasCorrect = undefined;

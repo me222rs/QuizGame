@@ -10,14 +10,14 @@ class CurrentVisitorCounter extends Component {
       visitors
     }));
     this.state = {
-      visitors: '0'
+      visitors: 0
     };
   }
 
   render() {
     return (
-      <div className="App">
-        <p className="App-intro">
+      <div className="Visitors">
+        <p>
           Besökare just nu: {this.state.visitors}
         </p>
       </div>

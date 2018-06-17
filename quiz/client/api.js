@@ -19,4 +19,16 @@ function getQuestionsFromDB(){
     console.log(error);
   });
 }
+
+// TODO implementera funktions för att spara resultat i databas
+function saveAnswerToDB(answer){
+  axios.post('http://localhost:8000/saveAnswer')
+  .then(function (response) {
+    console.log(response);
+    return response;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
 export { currentVisitors, getQuestionsFromDB }

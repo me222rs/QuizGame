@@ -13,10 +13,11 @@ class App extends Component {
   render() {
     return (
         <div className="App">
-          <Menu />
           <Provider store={store}>
             <div>
+              <Menu />
               <StartMenu />
+              <CurrentVisitorCounter />
             </div>
           </Provider>
         </div>
