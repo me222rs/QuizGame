@@ -22,7 +22,9 @@ router.post('/saveAnswerToDB',function(req, res) {
   var answer = Answer({
     questionID: req.body.questionID,
     answer: req.body.answer,
-    answerID: 1
+    answerID: 1,
+    age: req.body.age,
+    region: req.body.region
   });
 
   // save the answer
@@ -30,6 +32,10 @@ router.post('/saveAnswerToDB',function(req, res) {
     if (err) throw err;
     console.log('Answer saved!');
   });
+});
+
+router.get('/getStatistics',function(req, res) {
+    res.send(data.data);
 });
 
 //This qets 10 random questions from the database
@@ -41,10 +47,5 @@ router.get('/get10RandomQuestions',function(req, res) {
 router.get('/getQuestion',function(req, res) {
   res.send('Gets one question.');
 });
-
-router.get('/getStatistics',function(req, res) {
-  res.send('Gets all the statistics.');
-});
-
 
 module.exports = router;

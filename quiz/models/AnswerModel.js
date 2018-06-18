@@ -5,7 +5,9 @@ var Schema = mongoose.Schema;
 var answerSchema = new Schema({
   answerID: Number,
   questionID: String,
-  answer: String
+  answer: String,
+  age: Number,
+  region: String
 });
 
 module.exports = mongoose.model('Answer', answerSchema);

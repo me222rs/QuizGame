@@ -14,6 +14,8 @@ const initialState ={
   correctAnswer: undefined,
   playerWasCorrect: false,
   showAnswer: false,
+  age: 0,
+  region: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,7 +43,7 @@ const reducer = (state = initialState, action) => {
       wasCorrect = "Fel";
     }
 
-    saveAnswerToDB(state.questions[state.step].questionID, state.answer);
+    saveAnswerToDB(state.questions[state.step].questionID, state.answer, state.age, state.region);
 
     return Object.assign({}, state, {
       step: state.step+1,
@@ -76,6 +78,16 @@ const reducer = (state = initialState, action) => {
       score: 0,
       correctAnswer: undefined,
       playerWasCorrect: false
+    });
+
+    case constants.AGE_CHANGE:
+    return Object.assign({}, state, {
+      age: action.age
+    });
+
+    case constants.REGION_CHANGE:
+    return Object.assign({}, state, {
+      region: action.region
     });
 
     default:

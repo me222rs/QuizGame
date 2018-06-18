@@ -8,7 +8,7 @@ var server  = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var mongoose = require('mongoose');
 var schedule = require('node-schedule');
-
+var Answer = require('../models/AnswerModel');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../client'));
@@ -20,9 +20,16 @@ mongoose.connect('mongodb://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWOR
 
 app.use('/', router);
 
+var data = undefined;
+
 //Update the statistics once a day
-var j = schedule.scheduleJob('42 * * * *', function(){
+var j = schedule.scheduleJob('00 * * * *', function(){
   console.log('Uppdaterar statistik...');
+  Answer.find({}, function(err, answers) {
+    if (err) throw err;
+
+    data = answers;
+  });
 });
 
 // Emits the number of current visitors

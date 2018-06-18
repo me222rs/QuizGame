@@ -26,8 +26,15 @@ function welcome(props){
         sint occaecat cupidatat non proident, sunt in culpa qui officia
         deserunt mollit anim id est laborum.
       </p>
-      <p>Är du redo?</p>
-      <button onClick={props.start}>Start</button>
+
+      <form onSubmit={props.start}>
+        <p>Vilket landskap bor du i?</p>
+        <input type="text" name="region" onChange={props.regionChange}/>
+        <p>Ålder?</p>
+        <input type="text" name="age" onChange={props.ageChange}/>
+        <input type="submit" value="Start" />
+      </form>
+
     </div>
   );
 }
@@ -45,18 +52,29 @@ function Startmenu(props){
 function mapStateToProps(state){
   return {
     started: state.started,
+    age: state.age,
+    region: state.region
   };
 }
 
 function mapDispatchToProps(dispatch){
   return {
     start: (evt) => {
+      evt.preventDefault();
       axios.get("http://localhost:8000/getAllQuestions")
         .then((response) => {
-          dispatch({ type: constants.START, start: true, data: response.data })
+          dispatch({ type: constants.START, start: true, data: response.data, })
         }).catch((err) => {
           dispatch({type: Actions.FETCH_DATA_ERROR, payload: err})
         })
+    },
+    regionChange: (evt) => {
+      const action = {type: constants.REGION_CHANGE, region: evt.target.value};
+      dispatch(action);
+    },
+    ageChange: (evt) => {
+      const action = {type: constants.AGE_CHANGE, age: evt.target.value};
+      dispatch(action);
     }
   }
 }

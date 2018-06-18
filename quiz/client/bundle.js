@@ -837,7 +837,9 @@ var initialState = {
   score: 0,
   correctAnswer: undefined,
   playerWasCorrect: false,
-  showAnswer: false
+  showAnswer: false,
+  age: 0,
+  region: ""
 };
 
 var reducer = function reducer() {
@@ -868,7 +870,7 @@ var reducer = function reducer() {
         wasCorrect = "Fel";
       }
 
-      (0, _api.saveAnswerToDB)(state.questions[state.step].questionID, state.answer);
+      (0, _api.saveAnswerToDB)(state.questions[state.step].questionID, state.answer, state.age, state.region);
 
       return Object.assign({}, state, {
         step: state.step + 1,
@@ -903,6 +905,16 @@ var reducer = function reducer() {
         score: 0,
         correctAnswer: undefined,
         playerWasCorrect: false
+      });
+
+    case _constants2.default.AGE_CHANGE:
+      return Object.assign({}, state, {
+        age: action.age
+      });
+
+    case _constants2.default.REGION_CHANGE:
+      return Object.assign({}, state, {
+        region: action.region
       });
 
     default:
@@ -2025,7 +2037,9 @@ exports.default = {
   START: 'START',
   ADD_POINTS: 'ADD_POINTS',
   RESTART: 'RESTART',
-  ANSWER: 'ANSWER'
+  ANSWER: 'ANSWER',
+  AGE_CHANGE: 'AGE_CHANGE',
+  REGION_CHANGE: 'REGION_CHANGE'
 };
 
 /***/ }),
@@ -2243,10 +2257,12 @@ function getQuestionsFromDB() {
 }
 
 // TODO implementera funktions för att spara resultat i databas
-function saveAnswerToDB(questionID, answer) {
+function saveAnswerToDB(questionID, answer, age, region) {
   _axios2.default.post('http://localhost:8000/saveAnswerToDB', {
     questionID: questionID,
-    answer: answer
+    answer: answer,
+    age: age,
+    region: region
   }).then(function (response) {
     console.log(response);
   }).catch(function (error) {
@@ -8478,14 +8494,21 @@ function welcome(props) {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     ),
     _react2.default.createElement(
-      'p',
-      null,
-      '\xC4r du redo?'
-    ),
-    _react2.default.createElement(
-      'button',
-      { onClick: props.start },
-      'Start'
+      'form',
+      { onSubmit: props.start },
+      _react2.default.createElement(
+        'p',
+        null,
+        'Vilket landskap bor du i?'
+      ),
+      _react2.default.createElement('input', { type: 'text', name: 'region', onChange: props.regionChange }),
+      _react2.default.createElement(
+        'p',
+        null,
+        '\xC5lder?'
+      ),
+      _react2.default.createElement('input', { type: 'text', name: 'age', onChange: props.ageChange }),
+      _react2.default.createElement('input', { type: 'submit', value: 'Start' })
     )
   );
 }
@@ -8504,18 +8527,29 @@ function Startmenu(props) {
 
 function mapStateToProps(state) {
   return {
-    started: state.started
+    started: state.started,
+    age: state.age,
+    region: state.region
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     start: function start(evt) {
+      evt.preventDefault();
       _axios2.default.get("http://localhost:8000/getAllQuestions").then(function (response) {
         dispatch({ type: _constants2.default.START, start: true, data: response.data });
       }).catch(function (err) {
         dispatch({ type: Actions.FETCH_DATA_ERROR, payload: err });
       });
+    },
+    regionChange: function regionChange(evt) {
+      var action = { type: _constants2.default.REGION_CHANGE, region: evt.target.value };
+      dispatch(action);
+    },
+    ageChange: function ageChange(evt) {
+      var action = { type: _constants2.default.AGE_CHANGE, age: evt.target.value };
+      dispatch(action);
     }
   };
 }
