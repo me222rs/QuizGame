@@ -14,9 +14,9 @@ import {getQuestionsFromDB} from '../api';
 
 function welcome(props){
   return(
-    <div>
-      <h1>Välkommen till quizzet!</h1>
-      <h3>Instruktioner</h3>
+    <div className="container">
+        <h1>Välkommen till quizzet!</h1>
+        <h3>Instruktioner</h3>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

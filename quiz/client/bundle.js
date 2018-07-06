@@ -4296,17 +4296,33 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Menu(props) {
   console.log('render', props);
   return _react2.default.createElement(
-    'div',
-    null,
+    'nav',
+    { 'class': 'navbar navbar-default' },
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/' },
-      'Hem'
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/highscore' },
-      'Highscore'
+      'div',
+      null,
+      _react2.default.createElement(
+        'ul',
+        { 'class': 'nav navbar-nav' },
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/' },
+            'Hem'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/highscore' },
+            'Highscore'
+          )
+        )
+      )
     )
   );
 }
@@ -8333,12 +8349,12 @@ function QuizForm(props) {
       null,
       _react2.default.createElement(
         'form',
-        { onSubmit: props.submitAnswer },
+        { onSubmit: props.submitAnswer, className: 'container' },
         _react2.default.createElement(
           'p',
           null,
           'Fr\xE5ga ',
-          props.step
+          props.step + 1
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement(
@@ -8363,7 +8379,7 @@ function QuizForm(props) {
             );
           })
         ),
-        _react2.default.createElement('input', { type: 'submit', disabled: disabledSubmit })
+        _react2.default.createElement('input', { value: 'N\xE4sta', type: 'submit', className: 'btn btn-default', disabled: disabledSubmit })
       ),
       _react2.default.createElement(_Score2.default, null)
     );
@@ -8371,7 +8387,7 @@ function QuizForm(props) {
     // TODO Add the menu to the end page
     return _react2.default.createElement(
       'div',
-      null,
+      { className: 'container' },
       _react2.default.createElement(
         'p',
         null,
@@ -8477,7 +8493,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function welcome(props) {
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'container' },
     _react2.default.createElement(
       'h1',
       null,

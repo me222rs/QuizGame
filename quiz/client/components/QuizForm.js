@@ -21,8 +21,8 @@ function QuizForm(props){
   if(props.step < props.questions.length){
     return (
       <div>
-        <form onSubmit={props.submitAnswer}>
-          <p>Fråga {props.step}</p><br />
+        <form onSubmit={props.submitAnswer} className="container">
+          <p>Fråga {props.step+1}</p><br />
           <p>{props.questions[props.step].question}</p>
           <img src={props.questions[props.step].imageUrl} height="300" width="300"/>
           <ul>
@@ -35,7 +35,7 @@ function QuizForm(props){
               )
             })}
           </ul>
-          <input type="submit" disabled={disabledSubmit}/>
+          <input value="Nästa" type="submit" className="btn btn-default" disabled={disabledSubmit}/>
         </form>
         <Score />
       </div>
@@ -43,7 +43,7 @@ function QuizForm(props){
   }else{
     // TODO Add the menu to the end page
     return(
-      <div>
+      <div className="container">
         <p>Tack för att du spelade!</p>
         <h3>Du fick {props.score} poäng!</h3>
         <button onClick={props.restart}>Spela igen</button>
