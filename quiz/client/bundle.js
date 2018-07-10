@@ -4388,7 +4388,7 @@ var CurrentVisitorCounter = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'Visitors' },
+        { className: 'navbar navbar-default navbar-fixed-bottom' },
         _react2.default.createElement(
           'p',
           null,
@@ -8513,18 +8513,26 @@ function welcome(props) {
       'form',
       { onSubmit: props.start },
       _react2.default.createElement(
-        'p',
-        null,
-        'Vilket landskap bor du i?'
+        'div',
+        { 'class': 'form-group' },
+        _react2.default.createElement(
+          'p',
+          null,
+          'Vilket landskap bor du i?'
+        ),
+        _react2.default.createElement('input', { type: 'text', name: 'region', onChange: props.regionChange, value: props.region })
       ),
-      _react2.default.createElement('input', { type: 'text', name: 'region', onChange: props.regionChange }),
       _react2.default.createElement(
-        'p',
-        null,
-        '\xC5lder?'
+        'div',
+        { 'class': 'form-group' },
+        _react2.default.createElement(
+          'p',
+          null,
+          '\xC5lder?'
+        ),
+        _react2.default.createElement('input', { type: 'text', name: 'age', onChange: props.ageChange, value: props.age })
       ),
-      _react2.default.createElement('input', { type: 'text', name: 'age', onChange: props.ageChange }),
-      _react2.default.createElement('input', { type: 'submit', value: 'Start' })
+      _react2.default.createElement('input', { type: 'submit', 'class': 'btn btn-success', value: 'Start' })
     )
   );
 }

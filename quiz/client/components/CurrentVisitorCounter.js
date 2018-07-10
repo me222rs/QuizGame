@@ -16,7 +16,7 @@ class CurrentVisitorCounter extends Component {
 
   render() {
     return (
-      <div className="Visitors">
+      <div className="navbar navbar-default navbar-fixed-bottom">
         <p>
           Besökare just nu: {this.state.visitors}
         </p>

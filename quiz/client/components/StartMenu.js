@@ -28,11 +28,15 @@ function welcome(props){
       </p>
 
       <form onSubmit={props.start}>
-        <p>Vilket landskap bor du i?</p>
-        <input type="text" name="region" onChange={props.regionChange}/>
-        <p>Ålder?</p>
-        <input type="text" name="age" onChange={props.ageChange}/>
-        <input type="submit" value="Start" />
+        <div class="form-group">
+          <p>Vilket landskap bor du i?</p>
+          <input type="text" name="region" onChange={props.regionChange} value={props.region}/>
+        </div>
+        <div class="form-group">
+          <p>Ålder?</p>
+          <input type="text" name="age" onChange={props.ageChange} value={props.age}/>
+        </div>
+        <input type="submit" class="btn btn-success" value="Start" />
       </form>
 
     </div>
