@@ -3,6 +3,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var Question = require('../../models/QuestionModel');
 var Answer = require('../../models/AnswerModel');
+var tasks = require('../tasks');
 
 //This is the startpage
 router.get('/', function(req, res){
@@ -35,7 +36,7 @@ router.post('/saveAnswerToDB',function(req, res) {
 });
 
 router.get('/getStatistics',function(req, res) {
-    res.send(data.data);
+    res.send(tasks.getData());
 });
 
 //This qets 10 random questions from the database
