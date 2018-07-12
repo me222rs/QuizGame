@@ -20,7 +20,17 @@ function getQuestionsFromDB(){
   });
 }
 
-// TODO implementera funktions för att spara resultat i databas
+function getStatisticsFromDB(){
+  axios.get('http://localhost:8000/getStatistics')
+  .then(function (response) {
+    console.log("getStatisticsFromDB(): "+response.data[0].answer);
+    return response;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
 function saveAnswerToDB(questionID, answer, age, region){
   axios.post('http://localhost:8000/saveAnswerToDB', {
     questionID: questionID,
@@ -35,4 +45,4 @@ function saveAnswerToDB(questionID, answer, age, region){
     console.log(error);
   });
 }
-export { currentVisitors, getQuestionsFromDB, saveAnswerToDB }
+export { currentVisitors, getQuestionsFromDB, saveAnswerToDB, getStatisticsFromDB }

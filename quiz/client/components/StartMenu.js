@@ -4,12 +4,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 // Components
-import CurrentVisitorCounter from './CurrentVisitorCounter';
-import Menu from './Menu';
 import QuizForm from './QuizForm';
 // Other
 import constants from '../store/constants';
-import store from '../store/index';
 import {getQuestionsFromDB} from '../api';
 
 function welcome(props){
@@ -28,17 +25,16 @@ function welcome(props){
       </p>
 
       <form onSubmit={props.start}>
-        <div class="form-group">
+        <div className="form-group">
           <p>Vilket landskap bor du i?</p>
           <input type="text" name="region" onChange={props.regionChange} value={props.region}/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <p>Ålder?</p>
           <input type="text" name="age" onChange={props.ageChange} value={props.age}/>
         </div>
-        <input type="submit" class="btn btn-success" value="Start" />
+        <input type="submit" className="btn btn-success" value="Start" />
       </form>
-
     </div>
   );
 }

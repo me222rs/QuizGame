@@ -2,7 +2,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import constants from '../store/constants';
-import store from '../store/index';
 import Score from './Score';
 import CurrentVisitorCounter from './CurrentVisitorCounter';
 
@@ -41,7 +40,6 @@ function QuizForm(props){
       </div>
     );
   }else{
-    // TODO Add the menu to the end page
     return(
       <div className="container">
         <p>Tack för att du spelade!</p>
@@ -65,7 +63,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
   return {
     submitAnswer: (evt) => {
-      evt.preventDefault(); //Prevents form from reloading page
+      evt.preventDefault();
       const action = {type: constants.NEXT_STEP};
       dispatch(action);
     },

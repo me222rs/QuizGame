@@ -1,8 +1,10 @@
 "use strict";
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 import constants from './constants';
-import {getQuestionsFromDB} from '../api';
 import {saveAnswerToDB} from '../api';
+import axios from 'axios';
+import {getStatisticsFromDB} from '../api';
 
 const initialState ={
   questions: [],
@@ -15,14 +17,14 @@ const initialState ={
   playerWasCorrect: false,
   showAnswer: false,
   age: 0,
-  region: ""
+  region: "",
+  stats: []
 }
 
 const reducer = (state = initialState, action) => {
   console.log("reducer",action);
   switch (action.type){
     case constants.START:
-    console.log(getQuestionsFromDB());
     return Object.assign({}, state, {
       questions: action.data,
       started: action.start,
@@ -63,6 +65,11 @@ const reducer = (state = initialState, action) => {
       answer: action.radioValue
     });
 
+    case constants.GET_STATS:
+    return Object.assign({}, state, {
+      stats: JSON.stringify(action.data)
+    });
+
     case constants.ADD_POINTS:
     return Object.assign({}, state, {
       answer: action.radioValue
@@ -84,16 +91,16 @@ const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       age: action.age
     });
-
+    
     case constants.REGION_CHANGE:
     return Object.assign({}, state, {
       region: action.region
     });
 
     default:
-      return state;
+    return state;
   }
 }
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 export default store;

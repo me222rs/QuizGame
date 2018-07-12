@@ -2,7 +2,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import constants from '../store/constants';
-import store from '../store/index';
 
 function Score(props){
   console.log('render',props);

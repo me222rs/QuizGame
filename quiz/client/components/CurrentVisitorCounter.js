@@ -9,6 +9,7 @@ class CurrentVisitorCounter extends Component {
     currentVisitors((err, visitors) => this.setState({
       visitors
     }));
+
     this.state = {
       visitors: 0
     };
