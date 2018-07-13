@@ -3403,7 +3403,7 @@ var reducer = function reducer() {
 
     case _constants2.default.GET_STATS:
       return Object.assign({}, state, {
-        stats: JSON.stringify(action.data)
+        stats: action.data
       });
 
     case _constants2.default.ADD_POINTS:
@@ -38416,26 +38416,51 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function HighscoreList(props) {
   console.log('render', props);
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(_Menu2.default, null),
-    _react2.default.createElement(
+  var test = props.stats;
+  console.log("stats ---> " + JSON.stringify(test[0]));
+  if (props.stats.length !== 0) {
+    return _react2.default.createElement(
       'div',
-      { className: 'container' },
+      null,
+      _react2.default.createElement(_Menu2.default, null),
       _react2.default.createElement(
-        'h1',
-        null,
-        'Highscore'
-      ),
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Highscore'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          props.stats[0].answer
+        ),
+        _react2.default.createElement(_CurrentVisitorCounter2.default, null)
+      )
+    );
+  } else {
+    return _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(_Menu2.default, null),
       _react2.default.createElement(
-        'p',
-        null,
-        props.stats
-      ),
-      _react2.default.createElement(_CurrentVisitorCounter2.default, null)
-    )
-  );
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Highscore'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'V\xE4ntar p\xE5 data...'
+        ),
+        _react2.default.createElement(_CurrentVisitorCounter2.default, null)
+      )
+    );
+  }
 }
 
 function mapStateToProps(state) {

@@ -67,7 +67,7 @@ const reducer = (state = initialState, action) => {
 
     case constants.GET_STATS:
     return Object.assign({}, state, {
-      stats: JSON.stringify(action.data)
+      stats: action.data
     });
 
     case constants.ADD_POINTS:
@@ -91,7 +91,7 @@ const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       age: action.age
     });
-    
+
     case constants.REGION_CHANGE:
     return Object.assign({}, state, {
       region: action.region

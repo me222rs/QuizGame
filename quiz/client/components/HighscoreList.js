@@ -6,16 +6,33 @@ import CurrentVisitorCounter from './CurrentVisitorCounter';
 
 function HighscoreList(props){
   console.log('render',props);
-  return (
-    <div>
-      <Menu />
-      <div className="container">  
-        <h1>Highscore</h1>
-        <p>{props.stats}</p>
-        <CurrentVisitorCounter />
+  var test = props.stats;
+  console.log("stats ---> "+JSON.stringify(test[0]));
+  if(props.stats.length !== 0){
+    return (
+      <div>
+        <Menu />
+        <div className="container">
+          <h1>Highscore</h1>
+          <p>{props.stats[0].answer}</p>
+          <CurrentVisitorCounter />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else{
+    return (
+      <div>
+        <Menu />
+        <div className="container">
+          <h1>Highscore</h1>
+          <p>Väntar på data...</p>
+          <CurrentVisitorCounter />
+        </div>
+      </div>
+    );
+  }
+
 }
 
 function mapStateToProps(state){
